@@ -1,4 +1,4 @@
-/* IGI Colored Gemstone Quiz — Google Apps Script
+/* IGI Colored Stone Quiz — Google Apps Script
    Sheet ID: 18Y1HzXXBgcD9KmSOlwCJcAAPclct1GSLbh44ykBeGQ0
    SETUP: Paste this into a new Apps Script project → Deploy as Web App → Copy URL → paste into app.js GAS_URL */
 
@@ -9,7 +9,7 @@ function doPost(e) {
   try {
     const data = JSON.parse(e.postData.contents);
     const ss   = SpreadsheetApp.openById(SHEET_ID);
-    if (data.source === 'course_interest_gemstone') writeCourseInterest(ss, data);
+    if (data.source === 'course_interest_colored-stone') writeCourseInterest(ss, data);
     else { writeGemstoneResponse(ss, data); writeWrongAnswers(ss, data); }
     return ContentService.createTextOutput(JSON.stringify({status:'ok'})).setMimeType(ContentService.MimeType.JSON);
   } catch(err) {
@@ -18,7 +18,7 @@ function doPost(e) {
 }
 
 function writeGemstoneResponse(ss, data) {
-  const TAB = 'Gemstone Leads';
+  const TAB = 'Colored Stone Leads';
   let sheet = ss.getSheetByName(TAB);
   if (!sheet) {
     sheet = ss.insertSheet(TAB);
@@ -29,7 +29,7 @@ function writeGemstoneResponse(ss, data) {
     [160,140,200,110,120,110,110,160,60,60,90,150,100,150,90,110,90,160].forEach((w,i)=>sheet.setColumnWidth(i+1,w));
   }
   const pct = Math.round((data.score/data.total)*100);
-  const badge = pct>=92?'🏆 Gemstone Expert':pct>=76?'💎 Gem Connoisseur':pct>=60?'🌿 On Your Way':'📚 Keep Exploring';
+  const badge = pct>=92?'🏆 Colored Stone Expert':pct>=76?'💎 Stone Connoisseur':pct>=60?'🌿 On Your Way':'📚 Keep Exploring';
   sheet.appendRow([new Date(),data.name||'',data.email||'',data.countryCode||'',data.mobile||'',data.country||'',data.city||'',data.profession||'',data.score||0,data.total||25,data.pct||(pct+'%'),badge,data.timeTaken||'',data.submitReason||'',data.deviceType||'',data.screenRes||'',(data.wrongAnswers||[]).length,data.submittedAt||new Date().toISOString()]);
   colorCodeBadges(sheet);
 }
@@ -39,8 +39,8 @@ function colorCodeBadges(sheet) {
   if (lr < 2) return;
   sheet.getRange(2,12,lr-1,1).getValues().forEach((row,i)=>{
     const c = sheet.getRange(i+2,12), v = row[0]||'';
-    if(v.includes('Gemstone Expert'))     c.setBackground('#fef9e7').setFontColor('#c9a84c');
-    else if(v.includes('Gem Connoisseur'))c.setBackground('#eafaf1').setFontColor('#27ae60');
+    if(v.includes('Colored Stone Expert'))     c.setBackground('#fef9e7').setFontColor('#c9a84c');
+    else if(v.includes('Stone Connoisseur'))c.setBackground('#eafaf1').setFontColor('#27ae60');
     else if(v.includes('On Your Way'))    c.setBackground('#eaf4fb').setFontColor('#2980b9');
     else if(v.includes('Keep Exploring')) c.setBackground('#f5eef8').setFontColor('#6c3483');
   });
@@ -74,7 +74,7 @@ function writeCourseInterest(ss, data) {
 }
 
 function buildDashboard() {
-  const ss=SpreadsheetApp.openById(SHEET_ID),src=ss.getSheetByName('Gemstone Leads');
+  const ss=SpreadsheetApp.openById(SHEET_ID),src=ss.getSheetByName('Colored Stone Leads');
   if(!src||src.getLastRow()<2)return;
   let dash=ss.getSheetByName('Dashboard');
   if(!dash)dash=ss.insertSheet('Dashboard');else dash.clearContents();

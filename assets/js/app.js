@@ -1,8 +1,8 @@
-/* IGI Colored Gemstone Quiz — app.js v1 */
+/* IGI Colored Stone Quiz — app.js v1 */
 
 const QUIZ_DURATION_SECONDS = 6 * 60;
 const GAS_URL = 'https://script.google.com/macros/s/AKfycbw6-svkiHn8GIW-Mp9Ia51ka6xb6J-a3Uo3tx-uSZKNW14VF2HbYYx684TMuxz3slIk/exec';
-const QUIZ_URL = 'https://igi-gemstones.vercel.app';
+const QUIZ_URL = 'https://igi-colored-stones.vercel.app';
 
 // ── EmailJS Config ── (fill these in after EmailJS setup)
 const EMAILJS_SERVICE_ID  = 'service_jglwfxg';
@@ -30,31 +30,31 @@ const GEM_COLORS = {
 };
 
 const quizQuestions = [
-  { id:1,  question:"Which of the following are considered the 'Big Three' precious colored gemstones?", options:["Emerald, Sapphire, Tanzanite","Ruby, Sapphire, Emerald","Ruby, Opal, Sapphire","Amethyst, Ruby, Emerald"], correct:1, gem:'teal', gemLabel:'The Big Three', img:'https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?w=560&q=80' },
+  { id:1,  question:"Which of the following are considered the 'Big Three' precious colored stones?", options:["Emerald, Sapphire, Tanzanite","Ruby, Sapphire, Emerald","Ruby, Opal, Sapphire","Amethyst, Ruby, Emerald"], correct:1, gem:'teal', gemLabel:'The Big Three', img:'https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?w=560&q=80' },
   { id:2,  question:"Ruby is a variety of which mineral?", options:["Beryl","Spinel","Corundum","Tourmaline"], correct:2, gem:'ruby', gemLabel:'Ruby', img:'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=560&q=80' },
   { id:3,  question:"The red color in ruby is caused by the presence of which element?", options:["Iron","Chromium","Vanadium","Titanium"], correct:1, gem:'ruby', gemLabel:'Ruby Color Science', img:'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=560&q=80' },
   { id:4,  question:"Blue sapphire gets its color primarily from which elements?", options:["Chromium and Vanadium","Iron and Titanium","Copper and Manganese","Cobalt and Nickel"], correct:1, gem:'sapphire', gemLabel:'Blue Sapphire', img:'https://images.unsplash.com/photo-1573408301185-9519f94816b5?w=560&q=80' },
   { id:5,  question:"Emerald is a variety of which mineral?", options:["Corundum","Quartz","Beryl","Tourmaline"], correct:2, gem:'emerald', gemLabel:'Emerald', img:'https://images.unsplash.com/photo-1617791160505-6f00504e3519?w=560&q=80' },
   { id:6,  question:"The green color in emerald is caused primarily by:", options:["Iron and Titanium","Chromium and/or Vanadium","Copper and Zinc","Manganese and Cobalt"], correct:1, gem:'emerald', gemLabel:'Emerald Color', img:'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=560&q=80' },
-  { id:7,  question:"Which term describes the three-part assessment of color quality in a gemstone?", options:["Hue, Tone, Saturation","Cut, Color, Carat","Fire, Luster, Brilliance","Shade, Tint, Depth"], correct:0, gem:'teal', gemLabel:'Color Grading', img:'https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?w=560&q=80' },
-  { id:8,  question:"What does 'Hue' refer to in gemstone color grading?", options:["The lightness or darkness of the color","The intensity or strength of the color","The basic color itself (e.g. red, blue, green)","The surface reflection of the gem"], correct:2, gem:'teal', gemLabel:'Hue Definition', img:'https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=560&q=80' },
-  { id:9,  question:"'Pigeon's Blood' is a term used to describe the finest quality of which gemstone?", options:["Spinel","Garnet","Ruby","Red Tourmaline"], correct:2, gem:'ruby', gemLabel:"Pigeon's Blood Ruby", img:'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=560&q=80' },
-  { id:10, question:"'Royal Blue' or 'Cornflower Blue' is used to describe the finest quality of which gemstone?", options:["Aquamarine","Tanzanite","Blue Topaz","Sapphire"], correct:3, gem:'sapphire', gemLabel:'Cornflower Sapphire', img:'https://images.unsplash.com/photo-1573408301185-9519f94816b5?w=560&q=80' },
-  { id:11, question:"The clarity standard for colored gemstones is generally:", options:["The same as diamonds — all inclusions are undesirable","More lenient — some inclusions are expected and accepted","Stricter than diamonds — all inclusions reduce value to zero","Irrelevant — clarity is not graded in colored gemstones"], correct:1, gem:'teal', gemLabel:'Clarity Standards', img:'https://images.unsplash.com/photo-1617791160505-6f00504e3519?w=560&q=80' },
-  { id:12, question:"Which gemstone is known for its phenomenon called 'asterism'?", options:["Emerald","Star Ruby or Star Sapphire","Alexandrite","Tanzanite"], correct:1, gem:'ruby', gemLabel:'Asterism', img:'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=560&q=80' },
+  { id:7,  question:"Which term describes the three-part assessment of color quality in a colored-stone?", options:["Hue, Tone, Saturation","Cut, Color, Carat","Fire, Luster, Brilliance","Shade, Tint, Depth"], correct:0, gem:'teal', gemLabel:'Color Grading', img:'https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?w=560&q=80' },
+  { id:8,  question:"What does 'Hue' refer to in colored-stone color grading?", options:["The lightness or darkness of the color","The intensity or strength of the color","The basic color itself (e.g. red, blue, green)","The surface reflection of the gem"], correct:2, gem:'teal', gemLabel:'Hue Definition', img:'https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=560&q=80' },
+  { id:9,  question:"'Pigeon's Blood' is a term used to describe the finest quality of which colored-stone?", options:["Spinel","Garnet","Ruby","Red Tourmaline"], correct:2, gem:'ruby', gemLabel:"Pigeon's Blood Ruby", img:'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=560&q=80' },
+  { id:10, question:"'Royal Blue' or 'Cornflower Blue' is used to describe the finest quality of which colored-stone?", options:["Aquamarine","Tanzanite","Blue Topaz","Sapphire"], correct:3, gem:'sapphire', gemLabel:'Cornflower Sapphire', img:'https://images.unsplash.com/photo-1573408301185-9519f94816b5?w=560&q=80' },
+  { id:11, question:"The clarity standard for colored stones is generally:", options:["The same as diamonds — all inclusions are undesirable","More lenient — some inclusions are expected and accepted","Stricter than diamonds — all inclusions reduce value to zero","Irrelevant — clarity is not graded in colored stones"], correct:1, gem:'teal', gemLabel:'Clarity Standards', img:'https://images.unsplash.com/photo-1617791160505-6f00504e3519?w=560&q=80' },
+  { id:12, question:"Which colored-stone is known for its phenomenon called 'asterism'?", options:["Emerald","Star Ruby or Star Sapphire","Alexandrite","Tanzanite"], correct:1, gem:'ruby', gemLabel:'Asterism', img:'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=560&q=80' },
   { id:13, question:"Alexandrite is famous for which optical phenomenon?", options:["Adularescence","Asterism","Color change depending on light source","Chatoyancy"], correct:2, gem:'alexandrite', gemLabel:'Alexandrite', img:'https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=560&q=80' },
-  { id:14, question:"The 'cat's eye' effect seen in certain gemstones is known as:", options:["Adularescence","Asterism","Chatoyancy","Iridescence"], correct:2, gem:'teal', gemLabel:"Cat's Eye Effect", img:'https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?w=560&q=80' },
-  { id:15, question:"Which gemstone is the birthstone for May?", options:["Sapphire","Emerald","Ruby","Aquamarine"], correct:1, gem:'emerald', gemLabel:'May Birthstone', img:'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=560&q=80' },
-  { id:16, question:"On the Mohs hardness scale, which gemstone is the hardest after diamond?", options:["Emerald","Ruby and Sapphire (Corundum)","Spinel","Topaz"], correct:1, gem:'topaz', gemLabel:'Mohs Hardness', img:'https://images.unsplash.com/photo-1573408301185-9519f94816b5?w=560&q=80' },
+  { id:14, question:"The 'cat's eye' effect seen in certain colored-stones is known as:", options:["Adularescence","Asterism","Chatoyancy","Iridescence"], correct:2, gem:'teal', gemLabel:"Cat's Eye Effect", img:'https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?w=560&q=80' },
+  { id:15, question:"Which colored-stone is the birthstone for May?", options:["Sapphire","Emerald","Ruby","Aquamarine"], correct:1, gem:'emerald', gemLabel:'May Birthstone', img:'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=560&q=80' },
+  { id:16, question:"On the Mohs hardness scale, which colored-stone is the hardest after diamond?", options:["Emerald","Ruby and Sapphire (Corundum)","Spinel","Topaz"], correct:1, gem:'topaz', gemLabel:'Mohs Hardness', img:'https://images.unsplash.com/photo-1573408301185-9519f94816b5?w=560&q=80' },
   { id:17, question:"What is the hardness of Corundum (Ruby and Sapphire) on the Mohs scale?", options:["7","7.5","8","9"], correct:3, gem:'topaz', gemLabel:'Corundum Hardness', img:'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=560&q=80' },
   { id:18, question:"Which country is the most famous source of the finest 'Pigeon's Blood' rubies?", options:["Thailand","Sri Lanka","Myanmar (Burma)","Mozambique"], correct:2, gem:'ruby', gemLabel:'Burma Ruby Origin', img:'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=560&q=80' },
   { id:19, question:"Tanzanite is found commercially in only one location in the world. Where?", options:["Kenya","Tanzania","South Africa","Madagascar"], correct:1, gem:'tanzanite', gemLabel:'Tanzanite Origin', img:'https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=560&q=80' },
   { id:20, question:"Which treatment is most commonly applied to rubies and sapphires to improve their color and clarity?", options:["Fracture filling with glass","Irradiation","Heat treatment","Oiling"], correct:2, gem:'teal', gemLabel:'Gem Treatments', img:'https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?w=560&q=80' },
   { id:21, question:"Which treatment is most commonly applied to emeralds to improve their appearance?", options:["Heat treatment","Laser drilling","Oiling / resin filling","Irradiation"], correct:2, gem:'emerald', gemLabel:'Emerald Treatment', img:'https://images.unsplash.com/photo-1617791160505-6f00504e3519?w=560&q=80' },
-  { id:22, question:"A gemstone described as 'natural, no treatment' is considered:", options:["Less valuable — not enhanced","Equal in value to treated stones of the same grade","Most valuable — untreated stones command a premium","Not certifiable by gem labs"], correct:2, gem:'teal', gemLabel:'No-Treatment Premium', img:'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=560&q=80' },
+  { id:22, question:"A colored-stone described as 'natural, no treatment' is considered:", options:["Less valuable — not enhanced","Equal in value to treated stones of the same grade","Most valuable — untreated stones command a premium","Not certifiable by gem labs"], correct:2, gem:'teal', gemLabel:'No-Treatment Premium', img:'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=560&q=80' },
   { id:23, question:"Which of the following is NOT a variety of the mineral Beryl?", options:["Emerald","Aquamarine","Morganite","Tanzanite"], correct:3, gem:'beryl', gemLabel:'Beryl Family', img:'https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=560&q=80' },
-  { id:24, question:"The term 'inclusion' in a colored gemstone refers to:", options:["The cut style of the gemstone","Any internal characteristic such as crystals, needles, or fractures","The weight of the stone in carats","The country of origin"], correct:1, gem:'teal', gemLabel:'Gem Inclusions', img:'https://images.unsplash.com/photo-1573408301185-9519f94816b5?w=560&q=80' },
-  { id:25, question:"Which gemstone is known as the 'stone of all colors' because it comes in virtually every color?", options:["Garnet","Spinel","Tourmaline","Sapphire"], correct:2, gem:'tourmaline', gemLabel:'Tourmaline', img:'https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?w=560&q=80' }
+  { id:24, question:"The term 'inclusion' in a colored stone refers to:", options:["The cut style of the colored-stone","Any internal characteristic such as crystals, needles, or fractures","The weight of the stone in carats","The country of origin"], correct:1, gem:'teal', gemLabel:'Gem Inclusions', img:'https://images.unsplash.com/photo-1573408301185-9519f94816b5?w=560&q=80' },
+  { id:25, question:"Which colored-stone is known as the 'stone of all colors' because it comes in virtually every color?", options:["Garnet","Spinel","Tourmaline","Sapphire"], correct:2, gem:'tourmaline', gemLabel:'Tourmaline', img:'https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?w=560&q=80' }
 ];
 
 // STATE
@@ -131,7 +131,7 @@ function sendOTP(){
     to_name:   currentUser.name,
     to_email:  currentUser.email,
     otp_code:  otpCode,
-    quiz_name: 'IGI Colored Gemstone Quiz',
+    quiz_name: 'IGI Colored Stone Quiz',
     expiry_min:'5'
   }).then(()=>{
     btn.textContent='Start Quiz →';btn.classList.remove('otp-sending');
@@ -286,7 +286,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     otpAttempts=0;
     otpCode=generateOTP();
     otpExpiry=Date.now()+(OTP_EXPIRY_SEC*1000);
-    emailjs.send(EMAILJS_SERVICE_ID,EMAILJS_TEMPLATE_ID,{to_name:currentUser.name,to_email:currentUser.email,otp_code:otpCode,quiz_name:'IGI Colored Gemstone Quiz',expiry_min:'5'}).then(()=>{
+    emailjs.send(EMAILJS_SERVICE_ID,EMAILJS_TEMPLATE_ID,{to_name:currentUser.name,to_email:currentUser.email,otp_code:otpCode,quiz_name:'IGI Colored Stone Quiz',expiry_min:'5'}).then(()=>{
       startOTPCountdown();
       showToast('✉️','New code sent to your email!');
     }).catch(()=>showToast('⚠️','Failed to resend. Please try again.'));
@@ -353,7 +353,7 @@ function submitQuiz(reason){
   const timeStr=formatDur(rawSec),pct=Math.round((score/finalTotal)*100);
   const wrongAnswers=shuffledQuestions.filter(q=>userAnswers[q.id]!==q.correct).map(q=>({qNum:q.originalId,question:q.question,given:userAnswers[q.id]!==undefined?q.options[userAnswers[q.id]]:'Not answered',correct:q.options[q.correct]}));
   if(typeof fbq!=='undefined')fbq('track','CompleteRegistration',{content_name:'IGI Gemstone Quiz Completed',value:score,currency:'INR'});
-  const payload={source:'gemstone',name:currentUser.name,email:currentUser.email,mobile:currentUser.mobile,countryCode:currentUser.countryCode,country:currentUser.country,profession:currentUser.profession,city:currentUser.city,score,total:finalTotal,pct:pct+'%',timeTaken:timeStr,submitReason:reason,deviceType:/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)?'Mobile':'Desktop',screenRes:`${window.screen.width}x${window.screen.height}`,userAgent:navigator.userAgent,wrongAnswers,submittedAt:new Date().toISOString()};
+  const payload={source:'colored-stone',name:currentUser.name,email:currentUser.email,mobile:currentUser.mobile,countryCode:currentUser.countryCode,country:currentUser.country,profession:currentUser.profession,city:currentUser.city,score,total:finalTotal,pct:pct+'%',timeTaken:timeStr,submitReason:reason,deviceType:/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)?'Mobile':'Desktop',screenRes:`${window.screen.width}x${window.screen.height}`,userAgent:navigator.userAgent,wrongAnswers,submittedAt:new Date().toISOString()};
   fetch(GAS_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(payload)}).catch(()=>{});
   showResult(score,timeStr,pct,wrongAnswers);
 }
@@ -369,8 +369,8 @@ function showResult(score,timeStr,pct,wrongAnswers){
   let cur=0;document.getElementById('res-score').textContent=`0 / ${finalTotal}`;
   const iv=setInterval(()=>{cur=Math.min(cur+1,score);document.getElementById('res-score').textContent=`${cur} / ${finalTotal}`;if(cur>=score)clearInterval(iv);},55);
   let badge,badgeColor;
-  if(pct>=92){badge='🏆 Gemstone Expert';badgeColor='#c9a84c';}
-  else if(pct>=76){badge='💎 Gem Connoisseur';badgeColor='#27ae60';}
+  if(pct>=92){badge='🏆 Colored Stone Expert';badgeColor='#c9a84c';}
+  else if(pct>=76){badge='💎 Stone Connoisseur';badgeColor='#27ae60';}
   else if(pct>=60){badge='🌿 On Your Way';badgeColor='#2980b9';}
   else{badge='📚 Keep Exploring';badgeColor='#8e44ad';}
   const be=document.getElementById('res-badge');be.textContent=badge;be.style.color=badgeColor;be.style.borderColor=badgeColor+'40';
@@ -387,16 +387,16 @@ function bindCourseInterest(){
   btn.addEventListener('click',()=>{
     const course=document.getElementById('course-select').value;if(!course){alert('Please select a course.');return;}
     btn.disabled=true;btn.textContent='Sending...';
-    fetch(GAS_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({source:'course_interest_gemstone',name:currentUser.name,email:currentUser.email,mobile:currentUser.mobile,countryCode:currentUser.countryCode,country:currentUser.country,city:currentUser.city,profession:currentUser.profession,course,score:finalScore,total:finalTotal,pct:Math.round((finalScore/finalTotal)*100)+'%',submittedAt:new Date().toISOString()})}).catch(()=>{});
+    fetch(GAS_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({source:'course_interest_colored-stone',name:currentUser.name,email:currentUser.email,mobile:currentUser.mobile,countryCode:currentUser.countryCode,country:currentUser.country,city:currentUser.city,profession:currentUser.profession,course,score:finalScore,total:finalTotal,pct:Math.round((finalScore/finalTotal)*100)+'%',submittedAt:new Date().toISOString()})}).catch(()=>{});
     document.getElementById('course-confirm').classList.remove('hidden');btn.textContent='✓ Sent';
     if(typeof fbq!=='undefined')fbq('track','Lead',{content_name:course,content_category:'IGI Course Enquiry'});
   });
 }
 
 // SHARE
-function getShareText(){const pct=Math.round((finalScore/finalTotal)*100);const badge=pct>=92?'🏆 Gemstone Expert':pct>=76?'💎 Gem Connoisseur':pct>=60?'🌿 On Your Way':'📚 Keep Exploring';return`I scored ${finalScore}/${finalTotal} (${pct}%) on the IGI Colored Gemstone Quiz and earned: ${badge}! 💎\n\nCan you beat my score? Take the quiz: ${QUIZ_URL}`;}
+function getShareText(){const pct=Math.round((finalScore/finalTotal)*100);const badge=pct>=92?'🏆 Colored Stone Expert':pct>=76?'💎 Stone Connoisseur':pct>=60?'🌿 On Your Way':'📚 Keep Exploring';return`I scored ${finalScore}/${finalTotal} (${pct}%) on the IGI Colored Stone Quiz and earned: ${badge}! 💎\n\nCan you beat my score? Take the quiz: ${QUIZ_URL}`;}
 function shareWhatsApp(){window.open(`https://wa.me/?text=${encodeURIComponent(getShareText())}`,'_blank');}
-function shareLinkedIn(){const url=encodeURIComponent(QUIZ_URL);const pct=Math.round((finalScore/finalTotal)*100);const text=encodeURIComponent(`I scored ${finalScore}/${finalTotal} (${pct}%) on the IGI Colored Gemstone Quiz! 💎 Test your gem knowledge:`);window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}&summary=${text}`,'_blank');}
+function shareLinkedIn(){const url=encodeURIComponent(QUIZ_URL);const pct=Math.round((finalScore/finalTotal)*100);const text=encodeURIComponent(`I scored ${finalScore}/${finalTotal} (${pct}%) on the IGI Colored Stone Quiz! 💎 Test your gem knowledge:`);window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}&summary=${text}`,'_blank');}
 function copyShareLink(){navigator.clipboard.writeText(getShareText()).then(()=>{const btn=document.getElementById('copy-btn');btn.textContent='✅ Copied!';setTimeout(()=>{btn.textContent='🔗 Copy Link';},2500);}).catch(()=>alert('Copy this link: '+QUIZ_URL));}
 
 // RETAKE

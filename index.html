@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IGI Colored Gemstone Quiz — School of Gemology</title>
+  <meta name="description" content="How well do you know your colored gemstones? Test your knowledge of rubies, sapphires, emeralds and more — powered by IGI School of Gemology.">
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="IGI Colored Gemstone Quiz 💎 How well do you know your gems?">
+  <meta property="og:description" content="25 questions. 6 minutes. Ruby, Sapphire, Emerald and beyond. Take the IGI Colored Gemstone Quiz now.">
+  <meta property="og:url"         content="https://igi-gemstones.vercel.app">
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="IGI Colored Gemstone Quiz 💎">
+  <meta name="twitter:description" content="Test your gemstone knowledge. Powered by IGI School of Gemology.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <!-- Meta Pixel -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '405846704472849');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=405846704472849&ev=PageView&noscript=1"/></noscript>
+  <!-- End Meta Pixel -->
+</head>
+<body>
+  <canvas id="particle-canvas"></canvas>
+  <div class="page-wrap">
+    <div class="logo-bar">
+      <img src="assets/images/igi-logo-white.png" alt="IGI Logo">
+    </div>
+    <div class="quiz-header">
+      <p class="eyebrow">IGI School of Gemology</p>
+      <h1>Colored <em>Gemstone</em> Quiz</h1>
+      <p class="tagline">How well do you know the world of colored gems?</p>
+    </div>
+    <!-- LANDING -->
+    <section id="landing-section" class="card">
+      <div class="hero-gem-row">
+        <span class="gem-pill ruby">🔴 Ruby</span>
+        <span class="gem-pill sapp">🔵 Sapphire</span>
+        <span class="gem-pill emer">🟢 Emerald</span>
+        <span class="gem-pill ameth">🟣 Alexandrite</span>
+        <span class="gem-pill topaz">🟡 Tanzanite</span>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><span class="hero-stat-num">25</span><span class="hero-stat-label">Questions</span></div>
+        <div class="hero-stat"><span class="hero-stat-num">6</span><span class="hero-stat-label">Minutes</span></div>
+        <div class="hero-stat"><span class="hero-stat-num">4</span><span class="hero-stat-label">Badges</span></div>
+      </div>
+      <p class="hero-desc">From the deep reds of Burma ruby to the color-changing magic of alexandrite — discover how much you truly know about the world's most coveted colored gemstones.</p>
+      <div class="badge-preview">
+        <span class="bp">🏆 Gemstone Expert</span>
+        <span class="bp">💎 Gem Connoisseur</span>
+        <span class="bp">🌿 On Your Way</span>
+        <span class="bp">📚 Keep Exploring</span>
+      </div>
+      <button id="take-quiz-btn" class="btn-primary btn-large">Take the Quiz →</button>
+      <p class="hero-note">Free · No sign-up required · Instant results</p>
+    </section>
+    <!-- REGISTRATION -->
+    <section id="registration-section" class="card hidden">
+      <h3>Just a Few Details</h3>
+      <p class="reg-sub">We'll personalize your results and share relevant IGI course information with you.</p>
+      <div class="form-grid">
+        <div class="form-group"><label for="fullName">Your Name *</label><input type="text" id="fullName" placeholder="Enter your name" required autocomplete="off"></div>
+        <div class="form-group"><label for="email">Email ID *</label><input type="email" id="email" placeholder="your@email.com" required autocomplete="off"></div>
+        <div class="form-group">
+          <label for="country">Country *</label>
+          <select id="country" required>
+            <option value="India" selected>🇮🇳 India</option>
+            <option value="Belgium">🇧🇪 Belgium (Antwerp)</option>
+            <option value="USA">🇺🇸 United States</option>
+            <option value="UAE">🇦🇪 UAE (Dubai)</option>
+            <option value="China">🇨🇳 China</option>
+            <option value="Hong Kong">🇭🇰 Hong Kong</option>
+            <option value="UK">🇬🇧 United Kingdom</option>
+            <option value="Singapore">🇸🇬 Singapore</option>
+            <option value="Australia">🇦🇺 Australia</option>
+            <option value="Canada">🇨🇦 Canada</option>
+            <option value="Japan">🇯🇵 Japan</option>
+            <option value="Israel">🇮🇱 Israel</option>
+            <option value="Thailand">🇹🇭 Thailand</option>
+            <option value="Turkey">🇹🇷 Turkey</option>
+            <option value="Italy">🇮🇹 Italy</option>
+            <option value="South Africa">🇿🇦 South Africa</option>
+            <option value="Other">🌍 Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Mobile (optional)</label>
+          <div class="mobile-row">
+            <select id="countryCode">
+              <option value="+91" selected>🇮🇳 +91</option><option value="+32">🇧🇪 +32</option>
+              <option value="+1">🇺🇸 +1</option><option value="+971">🇦🇪 +971</option>
+              <option value="+86">🇨🇳 +86</option><option value="+852">🇭🇰 +852</option>
+              <option value="+44">🇬🇧 +44</option><option value="+65">🇸🇬 +65</option>
+              <option value="+61">🇦🇺 +61</option><option value="+1">🇨🇦 +1</option>
+              <option value="+81">🇯🇵 +81</option><option value="+972">🇮🇱 +972</option>
+              <option value="+66">🇹🇭 +66</option><option value="+90">🇹🇷 +90</option>
+              <option value="+39">🇮🇹 +39</option><option value="+27">🇿🇦 +27</option>
+              <option value="other">🌍 Other</option>
+            </select>
+            <input type="tel" id="mobile" placeholder="Mobile number" autocomplete="off">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="profession">I am a</label>
+          <select id="profession">
+            <option value="" selected>Prefer not to say</option>
+            <option value="Student">Student</option>
+            <option value="Jewelry Industry Professional">Jewelry Industry Professional</option>
+            <option value="Working Professional (Other)">Working Professional (Other)</option>
+            <option value="Gem Enthusiast">Gem Enthusiast</option>
+            <option value="Just Curious">Just Curious</option>
+          </select>
+        </div>
+        <div class="form-group" id="city-group" style="display:none;">
+          <label for="city" id="city-label">City *</label>
+          <input type="text" id="city" placeholder="Your city" autocomplete="off">
+        </div>
+      </div>
+      <button id="start-btn" class="btn-primary">Start Quiz →</button>
+      <p class="form-note">* Required fields. Your data is safe with IGI. We may share relevant course information.</p>
+    </section>
+    <!-- OTP VERIFICATION -->
+    <section id="otp-section" class="card hidden">
+      <div class="otp-header">
+        <div class="otp-icon">📧</div>
+        <h3>Verify Your Email</h3>
+        <p class="otp-sub">We've sent a 6-digit code to <strong id="otp-email-display"></strong></p>
+      </div>
+      <div class="otp-input-row">
+        <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
+        <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
+        <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
+        <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
+        <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
+        <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
+      </div>
+      <p id="otp-error" class="otp-error hidden">❌ Incorrect code. Please try again.</p>
+      <p id="otp-expired" class="otp-error hidden">⏰ Code expired. Please request a new one.</p>
+      <button id="verify-otp-btn" class="btn-primary" style="width:100%;margin-top:8px;">Verify &amp; Start Quiz →</button>
+      <div class="otp-footer">
+        <span id="otp-timer-txt" class="otp-countdown">Code expires in <span id="otp-countdown">05:00</span></span>
+        <button id="resend-otp-btn" class="otp-resend hidden">Resend Code</button>
+      </div>
+      <p class="otp-note">Didn't receive it? Check your spam folder. <button class="otp-back-btn" onclick="goBackToRegistration()">← Change Email</button></p>
+    </section>
+    <!-- QUIZ -->
+    <section id="quiz-section" class="hidden">
+      <div class="quiz-top-bar">
+        <div class="quiz-name-tag">Good luck, <span id="quiz-name-display"></span> 🌿</div>
+        <div class="timer-box"><span class="timer-label">Time Left</span><span id="timer" class="timer-value">06:00</span></div>
+      </div>
+      <div class="global-progress"><div class="global-progress-fill" id="global-progress-fill" style="width:0%"></div></div>
+      <div id="questions-container"></div>
+    </section>
+    <!-- RESULT -->
+    <section id="result-section" class="card hidden">
+      <h3>Your Gemstone Score</h3>
+      <div id="res-badge" class="result-badge"></div>
+      <div class="result-grid">
+        <div class="result-item"><span class="result-label">Name</span><span id="res-name" class="result-value" style="font-size:1rem;"></span></div>
+        <div class="result-item"><span class="result-label">Score</span><span id="res-score" class="result-value"></span></div>
+        <div class="result-item"><span class="result-label">Percentage</span><span id="res-pct" class="result-value"></span></div>
+        <div class="result-item"><span class="result-label">Time Taken</span><span id="res-time" class="result-value" style="font-size:1rem;"></span></div>
+      </div>
+      <div class="answer-review card"><div class="review-title">📋 Full Question Review</div><div id="review-list"></div></div>
+      <div class="course-box" id="course-interest-section">
+        <p class="course-box-title">📚 Interested in an IGI Course?</p>
+        <p class="course-box-sub">Select a program and we'll have a counsellor reach out to you.</p>
+        <select id="course-select" class="course-select">
+          <option value="" selected disabled>Select a course...</option>
+          <option value="Colored Gemstones (CSG)">🪨 Colored Gemstones (CSG)</option>
+          <option value="Diamond Grading & Gemology">💎 Diamond Grading &amp; Gemology</option>
+          <option value="Gem-A FGA">🎓 Gem-A FGA (Fellowship in Gemology)</option>
+          <option value="Digital Jewelry Design – JewelPad">🖥️ Digital Jewelry Design – JewelPad</option>
+          <option value="Jewelry Retail Management">🏪 Jewelry Retail Management</option>
+          <option value="Online Diamond Grading Course">💻 Online Diamond Grading Course</option>
+          <option value="Just Exploring">🔍 Just Exploring for Now</option>
+        </select><br>
+        <button id="course-submit-btn" class="btn-course">Send Me Details →</button>
+        <p id="course-confirm" class="course-confirm hidden">✅ Thank you! Our counsellor will reach out shortly.</p>
+      </div>
+      <div class="share-box card">
+        <p class="share-title">Share your result 🎉</p>
+        <p class="share-sub">Challenge your friends — can they beat your gemstone score?</p>
+        <div class="share-btns">
+          <button onclick="shareWhatsApp()" class="share-btn share-wa">📱 WhatsApp</button>
+          <button onclick="shareLinkedIn()" class="share-btn share-li">💼 LinkedIn</button>
+          <button onclick="copyShareLink()" class="share-btn share-copy" id="copy-btn">🔗 Copy Link</button>
+        </div>
+      </div>
+      <div class="cta-box">
+        <p class="cta-title">Want to master gemstones professionally?</p>
+        <p class="cta-sub">IGI School of Gemology offers world-recognized courses in Colored Gemstones, Diamond Grading, and Jewelry Design — online and at centers across India.</p>
+        <div class="cta-btns">
+          <a href="https://igi.org/india/courses" target="_blank" class="btn-cta btn-cta-primary">Explore IGI Courses →</a>
+          <a href="https://igi.org/india/contact" target="_blank" class="btn-cta btn-cta-secondary">Talk to a Counsellor</a>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:16px;">
+        <button onclick="retakeQuiz()" class="btn-retake">🔄 Retake Quiz</button>
+      </div>
+    </section>
+  </div>
+  <footer><p>© IGI India &nbsp;|&nbsp; International Gemological Institute &nbsp;|&nbsp; <a href="https://igi.org" target="_blank">igi.org</a></p></footer>
+  <div id="toast" class="toast"><span class="toast-emoji" id="toast-emoji"></span><span class="toast-text" id="toast-text"></span></div>
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

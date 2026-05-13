@@ -302,7 +302,7 @@ function startQuiz(){
   document.getElementById('quiz-section').classList.remove('hidden');
   document.getElementById('quiz-name-display').textContent=currentUser.name;
   quizStartTime=Date.now();startTimer();renderQuestion(0);window.scrollTo({top:0,behavior:'smooth'});
-  if(typeof fbq!=='undefined')fbq('track','InitiateCheckout',{content_name:'IGI Gemstone Quiz Started'});
+  if(typeof fbq!=='undefined')fbq('track','InitiateCheckout',{content_name:'IGI Stone Quiz Started'});
 }
 
 // TIMER
@@ -352,7 +352,7 @@ function submitQuiz(reason){
   const rawSec=quizStartTime?Math.floor((Date.now()-quizStartTime)/1000):QUIZ_DURATION_SECONDS;
   const timeStr=formatDur(rawSec),pct=Math.round((score/finalTotal)*100);
   const wrongAnswers=shuffledQuestions.filter(q=>userAnswers[q.id]!==q.correct).map(q=>({qNum:q.originalId,question:q.question,given:userAnswers[q.id]!==undefined?q.options[userAnswers[q.id]]:'Not answered',correct:q.options[q.correct]}));
-  if(typeof fbq!=='undefined')fbq('track','CompleteRegistration',{content_name:'IGI Gemstone Quiz Completed',value:score,currency:'INR'});
+  if(typeof fbq!=='undefined')fbq('track','CompleteRegistration',{content_name:'IGI Stone Quiz Completed',value:score,currency:'INR'});
   const payload={source:'colored-stone',name:currentUser.name,email:currentUser.email,mobile:currentUser.mobile,countryCode:currentUser.countryCode,country:currentUser.country,profession:currentUser.profession,city:currentUser.city,score,total:finalTotal,pct:pct+'%',timeTaken:timeStr,submitReason:reason,deviceType:/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)?'Mobile':'Desktop',screenRes:`${window.screen.width}x${window.screen.height}`,userAgent:navigator.userAgent,wrongAnswers,submittedAt:new Date().toISOString()};
   fetch(GAS_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(payload)}).catch(()=>{});
   showResult(score,timeStr,pct,wrongAnswers);

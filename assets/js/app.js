@@ -2,7 +2,7 @@
 
 const QUIZ_DURATION_SECONDS = 6 * 60;
 const GAS_URL = 'https://script.google.com/macros/s/AKfycbw6-svkiHn8GIW-Mp9Ia51ka6xb6J-a3Uo3tx-uSZKNW14VF2HbYYx684TMuxz3slIk/exec';
-const QUIZ_URL = 'https://igi-colored-stones.vercel.app';
+const QUIZ_URL = 'https://igi-colored-stone-quiz.vercel.app';
 
 // ── EmailJS Config ── (fill these in after EmailJS setup)
 const EMAILJS_SERVICE_ID  = 'service_jglwfxg';

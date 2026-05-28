@@ -79,9 +79,9 @@
           <label for="country">Country *</label>
           <select id="country" required>
             <option value="India" selected>🇮🇳 India</option>
-            <option value="Belgium">🇧🇪 Belgium (Antwerp)</option>
+            <option value="Belgium">🇧🇪 Belgium</option>
             <option value="USA">🇺🇸 United States</option>
-            <option value="UAE">🇦🇪 UAE (Dubai)</option>
+            <option value="UAE">🇦🇪 UAE</option>
             <option value="China">🇨🇳 China</option>
             <option value="Hong Kong">🇭🇰 Hong Kong</option>
             <option value="UK">🇬🇧 United Kingdom</option>
@@ -168,7 +168,7 @@
     </section>
     <!-- RESULT -->
     <section id="result-section" class="card hidden">
-      <h3>Your Gemstone Score</h3>
+      <h3>Your Colored Stone Score</h3>
       <div id="res-badge" class="result-badge"></div>
       <div class="result-grid">
         <div class="result-item"><span class="result-label">Name</span><span id="res-name" class="result-value" style="font-size:1rem;"></span></div>
@@ -179,19 +179,13 @@
       <div class="answer-review card"><div class="review-title">📋 Full Question Review</div><div id="review-list"></div></div>
       <div class="course-box" id="course-interest-section">
         <p class="course-box-title">📚 Interested in an IGI Course?</p>
-        <p class="course-box-sub">Select a program and we'll have a counsellor reach out to you.</p>
+        <p class="course-box-sub">Select a program and we'll have an IGI Team Member reach out to you.</p>
+        <!-- Course options populated dynamically by country in app.js -->
         <select id="course-select" class="course-select">
           <option value="" selected disabled>Select a course...</option>
-          <option value="Colored Stones (CSG)">🪨 Colored Stones (CSG)</option>
-          <option value="Diamond Grading & Gemology">💎 Diamond Grading &amp; Gemology</option>
-          <option value="Gem-A FGA">🎓 Gem-A FGA (Fellowship in Gemology)</option>
-          <option value="Digital Jewelry Design – JewelPad">🖥️ Digital Jewelry Design – JewelPad</option>
-          <option value="Jewelry Retail Management">🏪 Jewelry Retail Management</option>
-          <option value="Online Diamond Grading Course">💻 Online Diamond Grading Course</option>
-          <option value="Just Exploring">🔍 Just Exploring for Now</option>
         </select><br>
         <button id="course-submit-btn" class="btn-course">Send Me Details →</button>
-        <p id="course-confirm" class="course-confirm hidden">✅ Thank you! Our counsellor will reach out shortly.</p>
+        <p id="course-confirm" class="course-confirm hidden">✅ Thank you! An IGI Team Member will reach out to you shortly.</p>
       </div>
       <div class="share-box card">
         <p class="share-title">Share your result 🎉</p>
@@ -199,7 +193,7 @@
         <div class="share-btns">
           <button onclick="shareWhatsApp()" class="share-btn share-wa">📱 WhatsApp</button>
           <button onclick="shareLinkedIn()" class="share-btn share-li">💼 LinkedIn</button>
-          <button onclick="copyShareLink()" class="share-btn share-copy" id="copy-btn">🔗 Copy Link</button>
+          <button onclick="copyShareLink()" class="share-btn share-copy" id="copy-btn">🔗 Copy Results</button>
         </div>
       </div>
       <div class="cta-box">
@@ -207,7 +201,7 @@
         <p class="cta-sub">IGI School of Gemology offers world-recognized courses in Colored Stones, Diamond Grading, and Jewelry Design — online and at centers across India.</p>
         <div class="cta-btns">
           <a href="https://igi.org/india/courses" target="_blank" class="btn-cta btn-cta-primary">Explore IGI Courses →</a>
-          <a href="https://igi.org/india/contact" target="_blank" class="btn-cta btn-cta-secondary">Talk to a Counsellor</a>
+          <a href="https://igi.org/india/contact" target="_blank" class="btn-cta btn-cta-secondary">Talk to an IGI Team Member</a>
         </div>
       </div>
       <div style="text-align:center;margin-top:16px;">

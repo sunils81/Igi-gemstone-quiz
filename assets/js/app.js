@@ -2,7 +2,7 @@
 
 const QUIZ_DURATION_SECONDS = 6 * 60;
 const GAS_URL = 'https://script.google.com/macros/s/AKfycbw6-svkiHn8GIW-Mp9Ia51ka6xb6J-a3Uo3tx-uSZKNW14VF2HbYYx684TMuxz3slIk/exec';
-const QUIZ_URL = 'https://igi-colored-stone-quiz.vercel.app';
+const QUIZ_URL = 'https://learn.igi.org/colored-stones/';
 
 // ── EmailJS Config ── (fill these in after EmailJS setup)
 const EMAILJS_SERVICE_ID  = 'service_jglwfxg';
@@ -30,26 +30,26 @@ const GEM_COLORS = {
 };
 
 const quizQuestions = [
-  { id:1,  question:"Which of the following are considered the 'Big Three' precious colored stones?", options:["Emerald, Sapphire, Tanzanite","Ruby, Sapphire, Emerald","Ruby, Opal, Sapphire","Amethyst, Ruby, Emerald"], correct:1, gem:'teal', gemLabel:'The Big Three', img:'https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?w=560&q=80' },
+  { id:1,  question:"Which of the following are considered the 'Big Three' colored stones?", options:["Emerald, Sapphire, Tanzanite","Ruby, Sapphire, Emerald","Ruby, Opal, Sapphire","Amethyst, Ruby, Emerald"], correct:1, gem:'teal', gemLabel:'The Big Three', img:'https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?w=560&q=80' },
   { id:2,  question:"Ruby is a variety of which mineral?", options:["Beryl","Spinel","Corundum","Tourmaline"], correct:2, gem:'ruby', gemLabel:'Ruby', img:'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=560&q=80' },
   { id:3,  question:"The red color in ruby is caused by the presence of which element?", options:["Iron","Chromium","Vanadium","Titanium"], correct:1, gem:'ruby', gemLabel:'Ruby Color Science', img:'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=560&q=80' },
   { id:4,  question:"Blue sapphire gets its color primarily from which elements?", options:["Chromium and Vanadium","Iron and Titanium","Copper and Manganese","Cobalt and Nickel"], correct:1, gem:'sapphire', gemLabel:'Blue Sapphire', img:'https://images.unsplash.com/photo-1573408301185-9519f94816b5?w=560&q=80' },
   { id:5,  question:"Emerald is a variety of which mineral?", options:["Corundum","Quartz","Beryl","Tourmaline"], correct:2, gem:'emerald', gemLabel:'Emerald', img:'https://images.unsplash.com/photo-1617791160505-6f00504e3519?w=560&q=80' },
   { id:6,  question:"The green color in emerald is caused primarily by:", options:["Iron and Titanium","Chromium and/or Vanadium","Copper and Zinc","Manganese and Cobalt"], correct:1, gem:'emerald', gemLabel:'Emerald Color', img:'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=560&q=80' },
   { id:7,  question:"Which term describes the three-part assessment of color quality in a colored-stone?", options:["Hue, Tone, Saturation","Cut, Color, Carat","Fire, Luster, Brilliance","Shade, Tint, Depth"], correct:0, gem:'teal', gemLabel:'Color Grading', img:'https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?w=560&q=80' },
-  { id:8,  question:"What does 'Hue' refer to in colored-stone color grading?", options:["The lightness or darkness of the color","The intensity or strength of the color","The basic color itself (e.g. red, blue, green)","The surface reflection of the gem"], correct:2, gem:'teal', gemLabel:'Hue Definition', img:'https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=560&q=80' },
+  { id:8,  question:"What does 'Hue' refer to in colored-stone color grading?", options:["The lightness or darkness of the color","The intensity or strength of the color","The overall color of the gem","The surface reflection of the gem"], correct:2, gem:'teal', gemLabel:'Hue Definition', img:'https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=560&q=80' },
   { id:9,  question:"'Pigeon's Blood' is a term used to describe the finest quality of which colored-stone?", options:["Spinel","Garnet","Ruby","Red Tourmaline"], correct:2, gem:'ruby', gemLabel:"Pigeon's Blood Ruby", img:'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=560&q=80' },
   { id:10, question:"'Royal Blue' or 'Cornflower Blue' is used to describe the finest quality of which colored-stone?", options:["Aquamarine","Tanzanite","Blue Topaz","Sapphire"], correct:3, gem:'sapphire', gemLabel:'Cornflower Sapphire', img:'https://images.unsplash.com/photo-1573408301185-9519f94816b5?w=560&q=80' },
   { id:11, question:"The clarity standard for colored stones is generally:", options:["The same as diamonds — all inclusions are undesirable","More lenient — some inclusions are expected and accepted","Stricter than diamonds — all inclusions reduce value to zero","Irrelevant — clarity is not graded in colored stones"], correct:1, gem:'teal', gemLabel:'Clarity Standards', img:'https://images.unsplash.com/photo-1617791160505-6f00504e3519?w=560&q=80' },
-  { id:12, question:"Which colored-stone is known for its phenomenon called 'asterism'?", options:["Emerald","Star Ruby or Star Sapphire","Alexandrite","Tanzanite"], correct:1, gem:'ruby', gemLabel:'Asterism', img:'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=560&q=80' },
-  { id:13, question:"Alexandrite is famous for which optical phenomenon?", options:["Adularescence","Asterism","Color change depending on light source","Chatoyancy"], correct:2, gem:'alexandrite', gemLabel:'Alexandrite', img:'https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=560&q=80' },
+  { id:12, question:"Which colored-stone is known for its phenomenon called 'asterism'?", options:["Emerald","Star Sapphire","Alexandrite","Tanzanite"], correct:1, gem:'ruby', gemLabel:'Asterism', img:'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=560&q=80' },
+  { id:13, question:"Alexandrite is famous for which optical phenomenon?", options:["Adularescence","Asterism","Color change","Chatoyancy"], correct:2, gem:'alexandrite', gemLabel:'Alexandrite', img:'https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=560&q=80' },
   { id:14, question:"The 'cat's eye' effect seen in certain colored-stones is known as:", options:["Adularescence","Asterism","Chatoyancy","Iridescence"], correct:2, gem:'teal', gemLabel:"Cat's Eye Effect", img:'https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?w=560&q=80' },
   { id:15, question:"Which colored-stone is the birthstone for May?", options:["Sapphire","Emerald","Ruby","Aquamarine"], correct:1, gem:'emerald', gemLabel:'May Birthstone', img:'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=560&q=80' },
   { id:16, question:"On the Mohs hardness scale, which colored-stone is the hardest after diamond?", options:["Emerald","Ruby and Sapphire (Corundum)","Spinel","Topaz"], correct:1, gem:'topaz', gemLabel:'Mohs Hardness', img:'https://images.unsplash.com/photo-1573408301185-9519f94816b5?w=560&q=80' },
-  { id:17, question:"What is the hardness of Corundum (Ruby and Sapphire) on the Mohs scale?", options:["7","7.5","8","9"], correct:3, gem:'topaz', gemLabel:'Corundum Hardness', img:'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=560&q=80' },
-  { id:18, question:"Which country is the most famous source of the finest 'Pigeon's Blood' rubies?", options:["Thailand","Sri Lanka","Myanmar (Burma)","Mozambique"], correct:2, gem:'ruby', gemLabel:'Burma Ruby Origin', img:'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=560&q=80' },
-  { id:19, question:"Tanzanite is found commercially in only one location in the world. Where?", options:["Kenya","Tanzania","South Africa","Madagascar"], correct:1, gem:'tanzanite', gemLabel:'Tanzanite Origin', img:'https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=560&q=80' },
-  { id:20, question:"Which treatment is most commonly applied to rubies and sapphires to improve their color and clarity?", options:["Fracture filling with glass","Irradiation","Heat treatment","Oiling"], correct:2, gem:'teal', gemLabel:'Gem Treatments', img:'https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?w=560&q=80' },
+  { id:17, question:"What is the primary hue of a gemstone described as 'bluish-green'?", options:["Blue","Blue-green","Green","Teal"], correct:2, gem:'emerald', gemLabel:'Hue Modifier Rule', img:'https://images.unsplash.com/photo-1617791160505-6f00504e3519?w=560&q=80' },
+  { id:18, question:"The finest 'Pigeon's Blood' rubies from Myanmar are most closely associated with which mining region?", options:["Mong Hsu","Mogok","Namya (Nam Ywa)","Mandalay"], correct:1, gem:'ruby', gemLabel:'Mogok Valley', img:'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=560&q=80' },
+  { id:19, question:"Which pairing correctly identifies a gemstone found commercially in only one country?", options:["Alexandrite — Brazil","Tanzanite — Tanzania","Paraíba Tourmaline — Nigeria","Padparadscha Sapphire — Sri Lanka"], correct:1, gem:'tanzanite', gemLabel:'Single-Source Gems', img:'https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=560&q=80' },
+  { id:20, question:"Which treatment has traditionally been applied to rubies and sapphires to improve their color and clarity?", options:["Fracture filling with glass","Irradiation","Heat treatment","Oiling"], correct:2, gem:'teal', gemLabel:'Gem Treatments', img:'https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?w=560&q=80' },
   { id:21, question:"Which treatment is most commonly applied to emeralds to improve their appearance?", options:["Heat treatment","Laser drilling","Oiling / resin filling","Irradiation"], correct:2, gem:'emerald', gemLabel:'Emerald Treatment', img:'https://images.unsplash.com/photo-1617791160505-6f00504e3519?w=560&q=80' },
   { id:22, question:"A colored-stone described as 'natural, no treatment' is considered:", options:["Less valuable — not enhanced","Equal in value to treated stones of the same grade","Most valuable — untreated stones command a premium","Not certifiable by gem labs"], correct:2, gem:'teal', gemLabel:'No-Treatment Premium', img:'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=560&q=80' },
   { id:23, question:"Which of the following is NOT a variety of the mineral Beryl?", options:["Emerald","Aquamarine","Morganite","Tanzanite"], correct:3, gem:'beryl', gemLabel:'Beryl Family', img:'https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=560&q=80' },
@@ -88,7 +88,32 @@ function showToast(emoji,text){const t=document.getElementById('toast');document
 
 // COUNTRY/CITY
 const CC_MAP={India:'+91',Belgium:'+32',USA:'+1',UAE:'+971',China:'+86','Hong Kong':'+852',UK:'+44',Singapore:'+65',Australia:'+61',Canada:'+1',Japan:'+81',Israel:'+972',Thailand:'+66',Turkey:'+90',Italy:'+39','South Africa':'+27'};
-function updateCityField(c){const g=document.getElementById('city-group'),l=document.getElementById('city-label'),i=document.getElementById('city');if(!c){g.style.display='none';i.required=false;return;}g.style.display='flex';if(c==='India'){l.textContent='City *';i.placeholder='e.g. Mumbai, Delhi, Surat...';i.required=true;}else{l.textContent='State / Region (optional)';i.placeholder='e.g. California, Dubai Marina...';i.required=false;}}
+const CITY_PLACEHOLDERS={
+  'India':        'e.g. Mumbai, Delhi, Surat, Jaipur...',
+  'Belgium':      'e.g. Antwerp, Brussels, Ghent...',
+  'USA':          'e.g. New York, Los Angeles, Chicago, Miami...',
+  'UAE':          'e.g. Dubai, Abu Dhabi, Sharjah...',
+  'China':        'e.g. Shanghai, Shenzhen, Beijing, Guangzhou...',
+  'Hong Kong':    'e.g. Central, Kowloon, Causeway Bay...',
+  'UK':           'e.g. London, Birmingham, Manchester...',
+  'Singapore':    'e.g. Orchard, Marina Bay, Jurong...',
+  'Australia':    'e.g. Sydney, Melbourne, Brisbane, Perth...',
+  'Canada':       'e.g. Toronto, Vancouver, Montreal, Calgary...',
+  'Japan':        'e.g. Tokyo, Osaka, Nagoya, Yokohama...',
+  'Israel':       'e.g. Tel Aviv, Jerusalem, Haifa...',
+  'Thailand':     'e.g. Bangkok, Chiang Mai, Pattaya...',
+  'Turkey':       'e.g. Istanbul, Ankara, Izmir...',
+  'Italy':        'e.g. Milan, Vicenza, Rome, Florence...',
+  'South Africa': 'e.g. Johannesburg, Cape Town, Durban...',
+  'Other':        'Your city or region'
+};
+function updateCityField(c){
+  const g=document.getElementById('city-group'),l=document.getElementById('city-label'),i=document.getElementById('city');
+  if(!c){g.style.display='none';i.required=false;return;}
+  g.style.display='flex';
+  if(c==='India'){l.textContent='City *';i.placeholder=CITY_PLACEHOLDERS['India'];i.required=true;}
+  else{l.textContent='City / Region (optional)';i.placeholder=CITY_PLACEHOLDERS[c]||'Your city or region';i.required=false;}
+}
 
 // DOM READY
 document.addEventListener('DOMContentLoaded',()=>{
@@ -378,10 +403,87 @@ function showResult(score,timeStr,pct,wrongAnswers){
     const gi=userAnswers[q.id],ok=gi===q.correct,gt=gi!==undefined?q.options[gi]:'Not answered',ct=q.options[q.correct];
     return`<div class="review-item ${ok?'correct':'wrong'}"><div class="review-q"><span>Q${i+1}.</span>${esc(q.question)}</div><div class="review-answers">${ok?`<span class="review-given correct-ans">✓ ${esc(gt)}</span>`:`<span class="review-given">✗ ${esc(gt)}</span><span class="review-correct">✓ ${esc(ct)}</span>`}</div></div>`;
   }).join('');
+  populateCourseSelect(currentUser.country||'India');
   bindCourseInterest();
 }
 
 // COURSE INTEREST
+// Country-specific course list — Colored Stone quiz leads with CSG, then full catalog by region
+const COURSES_BY_COUNTRY = {
+  'India': [
+    {value:'Colored Stone Graduate Program (C.S.G.)',  label:'🪨 Colored Stone Graduate Program (C.S.G.)'},
+    {value:'Graduate Gemologist Program (G.G.)',       label:'🏆 Graduate Gemologist Program (G.G.)'},
+    {value:'Diamond Graduate Program (D.G.)',           label:'💎 Diamond Graduate Program (D.G.)'},
+    {value:'Gem-A Foundation & Diploma (FGA pathway)', label:'🎓 Gem-A Foundation & Diploma (FGA pathway)'},
+    {value:'Digital Jewelry Design – JewelPad',        label:'🖥️ Digital Jewelry Design – JewelPad'},
+    {value:'Jewelry Design Graduate Program (J.D.G.)', label:'✏️ Jewelry Design Graduate Program (J.D.G.)'},
+    {value:'Pearl Course',                             label:'🦪 Pearl Course'},
+    {value:'Jewelry Retail Management',                label:'🏪 Jewelry Retail Management'},
+    {value:'Online Diamond Grading (eLearning)',       label:'💻 Online Diamond Grading (eLearning)'},
+    {value:'Just Exploring',                           label:'🔍 Just Exploring for Now'},
+  ],
+  'UAE': [
+    {value:'Colored Stone Graduate Program (C.S.G.)',  label:'🪨 Colored Stone Graduate Program (C.S.G.)'},
+    {value:'Graduate Gemologist Program (G.G.)',       label:'🏆 Graduate Gemologist Program (G.G.)'},
+    {value:'Diamond Graduate Program (D.G.)',           label:'💎 Diamond Graduate Program (D.G.)'},
+    {value:'Jewelry Design Graduate Program (J.D.G.)', label:'✏️ Jewelry Design Graduate Program (J.D.G.)'},
+    {value:'Pearl Course',                             label:'🦪 Pearl Course'},
+    {value:'Online Diamond Grading (eLearning)',       label:'💻 Online Diamond Grading (eLearning)'},
+    {value:'Just Exploring',                           label:'🔍 Just Exploring for Now'},
+  ],
+  'Belgium': [
+    {value:'Colored Stone Graduate Program (C.S.G.)',  label:'🪨 Colored Stone Graduate Program (C.S.G.)'},
+    {value:'Graduate Gemologist Program (G.G.)',       label:'🏆 Graduate Gemologist Program (G.G.)'},
+    {value:'Diamond Graduate Program (D.G.)',           label:'💎 Diamond Graduate Program (D.G.)'},
+    {value:'Diamond Grading Essentials',               label:'🔬 Diamond Grading Essentials'},
+    {value:'Online Diamond Grading (eLearning)',       label:'💻 Online Diamond Grading (eLearning)'},
+    {value:'Just Exploring',                           label:'🔍 Just Exploring for Now'},
+  ],
+  'Israel': [
+    {value:'Colored Stone Graduate Program (C.S.G.)',  label:'🪨 Colored Stone Graduate Program (C.S.G.)'},
+    {value:'Graduate Gemologist Program (G.G.)',       label:'🏆 Graduate Gemologist Program (G.G.)'},
+    {value:'Diamond Graduate Program (D.G.)',           label:'💎 Diamond Graduate Program (D.G.)'},
+    {value:'Diamond Grading Essentials',               label:'🔬 Diamond Grading Essentials'},
+    {value:'Online Diamond Grading (eLearning)',       label:'💻 Online Diamond Grading (eLearning)'},
+    {value:'Just Exploring',                           label:'🔍 Just Exploring for Now'},
+  ],
+  'USA': [
+    {value:'Colored Stone Graduate Program (C.S.G.)',  label:'🪨 Colored Stone Graduate Program (C.S.G.)'},
+    {value:'Graduate Gemologist Program (G.G.)',       label:'🏆 Graduate Gemologist Program (G.G.)'},
+    {value:'Diamond Graduate Program (D.G.)',           label:'💎 Diamond Graduate Program (D.G.)'},
+    {value:'Jewelry Design Graduate Program (J.D.G.)', label:'✏️ Jewelry Design Graduate Program (J.D.G.)'},
+    {value:'Pearl Course',                             label:'🦪 Pearl Course'},
+    {value:'Diamond Grading Essentials',               label:'🔬 Diamond Grading Essentials'},
+    {value:'Online Diamond Grading (eLearning)',       label:'💻 Online Diamond Grading (eLearning)'},
+    {value:'Just Exploring',                           label:'🔍 Just Exploring for Now'},
+  ],
+  'UK': [
+    {value:'Colored Stone Graduate Program (C.S.G.)',  label:'🪨 Colored Stone Graduate Program (C.S.G.)'},
+    {value:'Graduate Gemologist Program (G.G.)',       label:'🏆 Graduate Gemologist Program (G.G.)'},
+    {value:'Diamond Graduate Program (D.G.)',           label:'💎 Diamond Graduate Program (D.G.)'},
+    {value:'Jewelry Design Graduate Program (J.D.G.)', label:'✏️ Jewelry Design Graduate Program (J.D.G.)'},
+    {value:'Pearl Course',                             label:'🦪 Pearl Course'},
+    {value:'Online Diamond Grading (eLearning)',       label:'💻 Online Diamond Grading (eLearning)'},
+    {value:'Just Exploring',                           label:'🔍 Just Exploring for Now'},
+  ],
+};
+const COURSES_DEFAULT = [
+  {value:'Colored Stone Graduate Program (C.S.G.)',  label:'🪨 Colored Stone Graduate Program (C.S.G.)'},
+  {value:'Graduate Gemologist Program (G.G.)',       label:'🏆 Graduate Gemologist Program (G.G.)'},
+  {value:'Diamond Graduate Program (D.G.)',           label:'💎 Diamond Graduate Program (D.G.)'},
+  {value:'Jewelry Design Graduate Program (J.D.G.)', label:'✏️ Jewelry Design Graduate Program (J.D.G.)'},
+  {value:'Pearl Course',                             label:'🦪 Pearl Course'},
+  {value:'Online Diamond Grading (eLearning)',       label:'💻 Online Diamond Grading (eLearning)'},
+  {value:'Just Exploring',                           label:'🔍 Just Exploring for Now'},
+];
+
+function populateCourseSelect(country){
+  const sel=document.getElementById('course-select');if(!sel)return;
+  const courses=COURSES_BY_COUNTRY[country]||COURSES_DEFAULT;
+  sel.innerHTML='<option value="" selected disabled>Select a course...</option>';
+  courses.forEach(c=>{const o=document.createElement('option');o.value=c.value;o.textContent=c.label;sel.appendChild(o);});
+}
+
 function bindCourseInterest(){
   const btn=document.getElementById('course-submit-btn');if(!btn)return;
   btn.addEventListener('click',()=>{
@@ -397,7 +499,7 @@ function bindCourseInterest(){
 function getShareText(){const pct=Math.round((finalScore/finalTotal)*100);const badge=pct>=92?'🏆 Colored Stone Expert':pct>=76?'💎 Stone Connoisseur':pct>=60?'🌿 On Your Way':'📚 Keep Exploring';return`I scored ${finalScore}/${finalTotal} (${pct}%) on the IGI Colored Stone Quiz and earned: ${badge}! 💎\n\nCan you beat my score? Take the quiz: ${QUIZ_URL}`;}
 function shareWhatsApp(){window.open(`https://wa.me/?text=${encodeURIComponent(getShareText())}`,'_blank');}
 function shareLinkedIn(){const url=encodeURIComponent(QUIZ_URL);const pct=Math.round((finalScore/finalTotal)*100);const text=encodeURIComponent(`I scored ${finalScore}/${finalTotal} (${pct}%) on the IGI Colored Stone Quiz! 💎 Test your gem knowledge:`);window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}&summary=${text}`,'_blank');}
-function copyShareLink(){navigator.clipboard.writeText(getShareText()).then(()=>{const btn=document.getElementById('copy-btn');btn.textContent='✅ Copied!';setTimeout(()=>{btn.textContent='🔗 Copy Link';},2500);}).catch(()=>alert('Copy this link: '+QUIZ_URL));}
+function copyShareLink(){navigator.clipboard.writeText(getShareText()).then(()=>{const btn=document.getElementById('copy-btn');btn.textContent='✅ Copied!';setTimeout(()=>{btn.textContent='🔗 Copy Results';},2500);}).catch(()=>alert('Copy this link: '+QUIZ_URL));}
 
 // RETAKE
 function retakeQuiz(){userAnswers={};quizSubmitted=false;currentQIndex=0;finalScore=0;setGemColor('teal');document.getElementById('result-section').classList.add('hidden');document.getElementById('landing-section').classList.remove('hidden');document.getElementById('timer').classList.remove('warning');document.getElementById('timer').textContent='06:00';window.scrollTo({top:0,behavior:'smooth'});}

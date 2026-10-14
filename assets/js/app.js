@@ -4,6 +4,11 @@ const QUIZ_DURATION_SECONDS = 6 * 60;
 const GAS_URL = 'https://script.google.com/macros/s/AKfycbw6-svkiHn8GIW-Mp9Ia51ka6xb6J-a3Uo3tx-uSZKNW14VF2HbYYx684TMuxz3slIk/exec';
 const QUIZ_URL = 'https://learn.igi.org/colored-stones/';
 
+// Consent wording version. Bump this string whenever the consent text in index.html
+// changes, so every stored lead records which wording it actually agreed to. The CRM
+// keeps this in crm_leads.consent_version alongside consent_at. 2026-10-14.
+const CONSENT_VERSION = '2026-10-14-v1';
+
 // ── EmailJS Config ── (fill these in after EmailJS setup)
 const EMAILJS_SERVICE_ID  = 'service_jglwfxg';
 const EMAILJS_TEMPLATE_ID = 'template_xnuvsjy';
@@ -131,7 +136,24 @@ function handleStart(){
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){alert('Please enter a valid email address.');return;}
   const country=document.getElementById('country').value||'India';
   if(country==='India'&&!document.getElementById('city').value.trim()){alert('Please enter your city.');return;}
-  currentUser={name,email,mobile:document.getElementById('mobile').value.trim()||'',countryCode:document.getElementById('mobile').value.trim()?document.getElementById('countryCode').value:'',country,profession:document.getElementById('profession').value||'Not specified',city:document.getElementById('city').value.trim()||''};
+
+  // Mobile is now mandatory — a lead we cannot call is of little use to a counsellor,
+  // and ~47% of historic gemstone quiz leads arrived with no number. 2026-10-14.
+  const mobile=document.getElementById('mobile').value.trim();
+  if(!mobile){alert('Please enter your mobile number.');return;}
+  if(!/^[0-9]{6,15}$/.test(mobile.replace(/[\s\-()]/g,''))){
+    alert('Please enter a valid mobile number (digits only, 6-15 digits).');return;
+  }
+
+  // Consent gate — these details go on to the IGI CRM for course follow-up, so the person
+  // agrees to that here, before anything is collected. Stored with wording version and
+  // timestamp so the basis for contacting them is auditable later.
+  const consentEl=document.getElementById('consent');
+  if(!consentEl||!consentEl.checked){
+    alert('Please tick the consent box so we can share course information with you.');return;
+  }
+
+  currentUser={name,email,mobile:mobile,countryCode:document.getElementById('countryCode').value,country,profession:document.getElementById('profession').value||'Not specified',city:document.getElementById('city').value.trim()||'',consentGiven:true,consentVersion:CONSENT_VERSION,consentAt:new Date().toISOString()};
   sendOTP();
 }
 
@@ -378,7 +400,7 @@ function submitQuiz(reason){
   const timeStr=formatDur(rawSec),pct=Math.round((score/finalTotal)*100);
   const wrongAnswers=shuffledQuestions.filter(q=>userAnswers[q.id]!==q.correct).map(q=>({qNum:q.originalId,question:q.question,given:userAnswers[q.id]!==undefined?q.options[userAnswers[q.id]]:'Not answered',correct:q.options[q.correct]}));
   if(typeof fbq!=='undefined')fbq('track','CompleteRegistration',{content_name:'IGI Stone Quiz Completed',value:score,currency:'INR'});
-  const payload={source:'colored-stone',name:currentUser.name,email:currentUser.email,mobile:currentUser.mobile,countryCode:currentUser.countryCode,country:currentUser.country,profession:currentUser.profession,city:currentUser.city,score,total:finalTotal,pct:pct+'%',timeTaken:timeStr,submitReason:reason,deviceType:/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)?'Mobile':'Desktop',screenRes:`${window.screen.width}x${window.screen.height}`,userAgent:navigator.userAgent,wrongAnswers,submittedAt:new Date().toISOString()};
+  const payload={source:'colored-stone',name:currentUser.name,email:currentUser.email,mobile:currentUser.mobile,countryCode:currentUser.countryCode,country:currentUser.country,profession:currentUser.profession,city:currentUser.city,score,total:finalTotal,pct:pct+'%',timeTaken:timeStr,submitReason:reason,deviceType:/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)?'Mobile':'Desktop',screenRes:`${window.screen.width}x${window.screen.height}`,userAgent:navigator.userAgent,wrongAnswers,submittedAt:new Date().toISOString(),consentGiven:currentUser.consentGiven===true,consentVersion:currentUser.consentVersion||'',consentAt:currentUser.consentAt||''};
   fetch(GAS_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(payload)}).catch(()=>{});
   showResult(score,timeStr,pct,wrongAnswers);
 }
@@ -489,7 +511,7 @@ function bindCourseInterest(){
   btn.addEventListener('click',()=>{
     const course=document.getElementById('course-select').value;if(!course){alert('Please select a course.');return;}
     btn.disabled=true;btn.textContent='Sending...';
-    fetch(GAS_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({source:'course_interest_colored-stone',name:currentUser.name,email:currentUser.email,mobile:currentUser.mobile,countryCode:currentUser.countryCode,country:currentUser.country,city:currentUser.city,profession:currentUser.profession,course,score:finalScore,total:finalTotal,pct:Math.round((finalScore/finalTotal)*100)+'%',submittedAt:new Date().toISOString()})}).catch(()=>{});
+    fetch(GAS_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({source:'course_interest_colored-stone',name:currentUser.name,email:currentUser.email,mobile:currentUser.mobile,countryCode:currentUser.countryCode,country:currentUser.country,city:currentUser.city,profession:currentUser.profession,course,score:finalScore,total:finalTotal,pct:Math.round((finalScore/finalTotal)*100)+'%',submittedAt:new Date().toISOString(),consentGiven:currentUser.consentGiven===true,consentVersion:currentUser.consentVersion||'',consentAt:currentUser.consentAt||''})}).catch(()=>{});
     document.getElementById('course-confirm').classList.remove('hidden');btn.textContent='✓ Sent';
     if(typeof fbq!=='undefined')fbq('track','Lead',{content_name:course,content_category:'IGI Course Enquiry'});
   });

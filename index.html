@@ -111,7 +111,7 @@
               <option value="+39">🇮🇹 +39</option><option value="+27">🇿🇦 +27</option>
               <option value="other">🌍 Other</option>
             </select>
-            <input type="tel" id="mobile" placeholder="Mobile number" autocomplete="off">
+            <input type="tel" id="mobile" placeholder="Mobile number" required autocomplete="off">
           </div>
         </div>
         <div class="form-group">
@@ -130,8 +130,18 @@
           <input type="text" id="city" placeholder="Your city" autocomplete="off">
         </div>
       </div>
+      <div class="form-group consent-group">
+        <label class="consent-label">
+          <input type="checkbox" id="consent" required>
+          <span>I agree that IGI may contact me by phone, email or WhatsApp about its
+          gemology courses, and may store the details I have given here for that purpose.
+          I can withdraw this at any time by writing to
+          <a href="mailto:education.india@igi.org">education.india@igi.org</a>.
+          See IGI's <a href="https://www.igi.org/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a>. *</span>
+        </label>
+      </div>
       <button id="start-btn" class="btn-primary">Start Quiz →</button>
-      <p class="form-note">* Required fields. Your data is safe with IGI. We may share relevant course information.</p>
+      <p class="form-note">* Required fields.</p>
     </section>
     <!-- OTP VERIFICATION -->
     <section id="otp-section" class="card hidden">

@@ -7,7 +7,7 @@ const QUIZ_URL = 'https://learn.igi.org/colored-stones/';
 // Consent wording version. Bump this string whenever the consent text in index.html
 // changes, so every stored lead records which wording it actually agreed to. The CRM
 // keeps this in crm_leads.consent_version alongside consent_at. 2026-10-14.
-const CONSENT_VERSION = '2026-10-14-v1';
+const CONSENT_VERSION = 'dpdp-quiz-v1-2026-10';
 
 // ── EmailJS Config ── (fill these in after EmailJS setup)
 const EMAILJS_SERVICE_ID  = 'service_jglwfxg';

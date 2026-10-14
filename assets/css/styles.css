@@ -210,3 +210,150 @@ footer a{color:var(--gold);text-decoration:none}
 }
 .consent-label a { color: #0D1B2E; text-decoration: underline; }
 .consent-label a:hover { color: #C9A84C; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PREMIUM REFINEMENT LAYER — 2026-10-14
+   Appended last so it overrides the original rules without rewriting them.
+   The page was reading as busy rather than expensive: a particle field, three
+   overlapping radial glows, five saturated gem pills (red/blue/green/purple/
+   gold), emoji badge chips and a bright gold gradient CTA with a glow shadow.
+   Premium here means restraint — one deep navy ground, one gold accent used
+   only for a hairline eyebrow, numerals and the CTA, and generous whitespace.
+   Palette matches the IGI portal (navy #0D1B2E, gold #C9A84C).
+   ═══════════════════════════════════════════════════════════════════════ */
+:root{
+  --ink:#0A1220; --ink-2:#0E1829; --ink-3:#121F33;
+  --line:rgba(255,255,255,.08); --line-gold:rgba(201,168,76,.30);
+  --txt:#EEF1F5; --txt-2:#8E9DB2; --txt-3:#6B7A8F;
+  --gold:#C9A84C; --gold-2:#E2CC8E;
+}
+
+body{background:var(--ink)!important;color:var(--txt)!important;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+/* the particle field and the three colour washes behind it */
+#particle-canvas{display:none!important;}
+body::before{display:none!important;}
+
+.page-wrap{max-width:780px!important;padding-bottom:72px!important;}
+.logo-bar{padding:40px 0 4px!important;}
+.logo-bar img{height:46px!important;opacity:.95!important;filter:none!important;}
+
+/* ── Masthead ── */
+.quiz-header{padding:26px 0 6px!important;}
+.quiz-header .eyebrow{color:var(--gold)!important;letter-spacing:.34em!important;
+  font-size:.66rem!important;margin-bottom:20px!important;}
+.quiz-header .eyebrow::before,.quiz-header .eyebrow::after{width:46px!important;
+  background:linear-gradient(90deg,transparent,var(--line-gold),transparent)!important;}
+.quiz-header h1{font-size:clamp(2.2rem,5vw,3.3rem)!important;color:var(--txt)!important;
+  font-weight:600!important;letter-spacing:-.01em!important;}
+.quiz-header h1 em{color:var(--gold)!important;}
+.quiz-header .tagline{color:var(--txt-2)!important;font-size:.95rem!important;font-weight:400!important;}
+
+/* ── Surfaces: flat, hairline, no blur or glow ── */
+.card{background:var(--ink-2)!important;border:1px solid var(--line)!important;
+  border-radius:4px!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+  box-shadow:none!important;padding:44px 40px!important;}
+#landing-section{background:var(--ink-2)!important;border-color:var(--line)!important;}
+#landing-section::before{display:none!important;}
+
+/* ── Gem pills: five saturated colours were the loudest thing on the page.
+   Now one quiet row of small-caps names separated by hairlines. ── */
+.hero-gem-row{gap:0!important;margin-bottom:30px!important;}
+.gem-pill,.gem-pill.ruby,.gem-pill.sapp,.gem-pill.emer,.gem-pill.ameth,.gem-pill.topaz{
+  background:transparent!important;border:0!important;border-radius:0!important;
+  color:var(--txt-3)!important;font-size:.68rem!important;letter-spacing:.18em!important;
+  text-transform:uppercase;padding:0 16px!important;position:relative;}
+.gem-pill + .gem-pill::before{content:"";position:absolute;left:0;top:50%;
+  transform:translateY(-50%);width:1px;height:11px;background:var(--line);}
+
+/* ── Stats ── */
+.hero-stats{background:transparent!important;border:0!important;
+  border-top:1px solid var(--line)!important;border-bottom:1px solid var(--line)!important;
+  border-radius:0!important;margin:28px 0!important;}
+.hero-stat{padding:24px 10px!important;}
+.hero-stat + .hero-stat{border-left:1px solid var(--line)!important;}
+.hero-stat-num{color:var(--gold)!important;font-weight:400!important;font-size:2.1rem!important;}
+.hero-stat-label{color:var(--txt-3)!important;letter-spacing:.2em!important;font-size:.62rem!important;}
+
+.hero-desc{color:var(--txt-2)!important;font-size:1rem!important;line-height:1.85!important;
+  max-width:50ch!important;}
+.hero-note,.form-note{color:var(--txt-3)!important;font-size:.72rem!important;}
+
+/* ── Badge chips ── */
+.badge-preview{gap:0!important;margin-bottom:32px!important;}
+.bp{background:transparent!important;border:0!important;border-radius:0!important;
+  color:var(--txt-3)!important;font-size:.68rem!important;letter-spacing:.16em!important;
+  text-transform:uppercase;padding:0 16px!important;position:relative;}
+.bp + .bp::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);
+  width:1px;height:11px;background:var(--line);}
+
+/* ── Buttons: flat gold, square, no gradient or glow ── */
+.btn-primary,.btn-course,.btn-retake,.btn-cta-primary{
+  background:var(--gold)!important;background-image:none!important;color:#0A1220!important;
+  border:1px solid var(--gold)!important;border-radius:2px!important;
+  font-size:.76rem!important;font-weight:700!important;letter-spacing:.17em!important;
+  padding:16px 42px!important;box-shadow:none!important;transition:background .22s;}
+.btn-primary:hover,.btn-course:hover,.btn-retake:hover,.btn-cta-primary:hover{
+  background:var(--gold-2)!important;transform:none!important;box-shadow:none!important;}
+.btn-primary::after{display:none!important;}
+.btn-cta-secondary,.share-btn{background:transparent!important;color:var(--txt)!important;
+  border:1px solid var(--line)!important;border-radius:2px!important;box-shadow:none!important;
+  text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;}
+.btn-cta-secondary:hover,.share-btn:hover{border-color:var(--gold)!important;color:var(--gold)!important;}
+
+/* ── Form ── */
+#registration-section h3{color:var(--txt)!important;}
+.reg-sub{color:var(--txt-2)!important;}
+.form-group label{font-size:.64rem!important;letter-spacing:.18em!important;
+  color:var(--txt-3)!important;}
+.form-group input,.form-group select{background:var(--ink-3)!important;
+  border:1px solid var(--line)!important;border-radius:2px!important;padding:13px 15px!important;}
+.form-group input::placeholder{color:#55657A!important;}
+.form-group input:focus,.form-group select:focus{border-color:var(--gold)!important;
+  box-shadow:none!important;}
+
+/* ── Consent block — FIX. It inherited .form-group label's uppercase and used
+   link colours written for a light background, so the links were near-invisible
+   on this dark page and the paragraph shouted. ── */
+.form-group.consent-group,.consent-group{margin-top:22px!important;}
+.consent-group .consent-label,.form-group.consent-group label{
+  display:flex!important;align-items:flex-start!important;gap:12px!important;
+  text-transform:none!important;letter-spacing:.005em!important;
+  font-size:.8rem!important;line-height:1.65!important;font-weight:400!important;
+  color:var(--txt-2)!important;text-align:left!important;cursor:pointer;}
+.consent-group .consent-label input[type="checkbox"]{
+  appearance:none;-webkit-appearance:none;flex:0 0 auto;width:16px;height:16px;margin-top:3px;
+  border:1px solid var(--txt-3);border-radius:2px;background:transparent;cursor:pointer;
+  transition:background .18s,border-color .18s;}
+.consent-group .consent-label input[type="checkbox"]:checked{
+  background:var(--gold);border-color:var(--gold);}
+.consent-group .consent-label input[type="checkbox"]:checked::after{
+  content:"";display:block;width:4px;height:8px;margin:1px auto 0;
+  border:solid #0A1220;border-width:0 2px 2px 0;transform:rotate(45deg);}
+.consent-group .consent-label a{color:var(--gold)!important;text-decoration:underline;
+  text-underline-offset:2px;}
+.consent-group .consent-label a:hover{color:var(--gold-2)!important;}
+
+/* ── Remaining ornament ── */
+.otp-icon{display:none!important;}
+.otp-box{background:var(--ink-3)!important;border:1px solid var(--line)!important;
+  border-radius:2px!important;}
+.otp-box:focus{border-color:var(--gold)!important;}
+.result-badge{border-radius:2px!important;letter-spacing:.14em;text-transform:uppercase;
+  font-size:.74rem!important;}
+.timer-box{background:transparent!important;border:1px solid var(--line)!important;
+  border-radius:2px!important;}
+.global-progress-fill{background:var(--gold)!important;}
+.toast-emoji{display:none!important;}
+
+/* ── Premium layer: spacing corrections, 2026-10-14 ── */
+.card > *:first-child{margin-top:0!important;}
+/* Badge row: fit all four on one line, drop separators when it must wrap */
+.badge-preview{flex-wrap:nowrap!important;justify-content:center!important;}
+.bp{padding:0 13px!important;font-size:.64rem!important;letter-spacing:.12em!important;
+  white-space:nowrap!important;}
+@media (max-width:640px){
+  .badge-preview{flex-wrap:wrap!important;gap:6px 0!important;}
+  .bp{padding:0 10px!important;}
+  .bp + .bp::before{display:none!important;}
+}

@@ -88,7 +88,7 @@ function formatDur(s){return`${Math.floor(s/60)}m ${s%60}s`;}
 function setGemColor(k){const g=GEM_COLORS[k]||GEM_COLORS.teal;document.documentElement.style.setProperty('--gem-color',g.color);document.documentElement.style.setProperty('--gem-glow',g.glow);document.documentElement.style.setProperty('--gem-subtle',g.subtle);}
 
 // TOAST
-const MILESTONES={5:{e:'🌟',t:'5 down, 20 to go!'},10:{e:'💎',t:"10 done — you're on a roll!"},15:{e:'🔥',t:'Halfway! Keep going!'},20:{e:'🏆',t:'Only 5 left — finish strong!'},25:{e:'🎉',t:'All 25 answered!'}};
+const MILESTONES={5:{e:'',t:'5 down, 20 to go!'},10:{e:'',t:"10 done — you're on a roll!"},15:{e:'',t:'Halfway! Keep going!'},20:{e:'',t:'Only 5 left — finish strong!'},25:{e:'🎉',t:'All 25 answered!'}};
 function showToast(emoji,text){const t=document.getElementById('toast');document.getElementById('toast-emoji').textContent=emoji;document.getElementById('toast-text').textContent=text;t.classList.add('visible');setTimeout(()=>t.classList.remove('visible'),3200);}
 
 // COUNTRY/CITY
@@ -270,7 +270,7 @@ function verifyOTP(){
     // Success!
     document.querySelectorAll('.otp-box').forEach(b=>b.classList.add('success'));
     stopOTPCountdown();
-    showToast('✅','Email verified! Starting quiz...');
+    showToast('','Email verified! Starting quiz...');
     setTimeout(()=>{
       document.getElementById('otp-section').classList.add('hidden');
       startQuiz();
@@ -281,9 +281,9 @@ function verifyOTP(){
     setTimeout(()=>{
       document.querySelectorAll('.otp-box').forEach(b=>b.classList.remove('error'));
       if(otpAttempts>=OTP_MAX_ATTEMPTS){
-        document.getElementById('otp-error').textContent='❌ Too many incorrect attempts. Please request a new code.';
+        document.getElementById('otp-error').textContent='Too many incorrect attempts. Please request a new code.';
       } else {
-        document.getElementById('otp-error').textContent=`❌ Incorrect code. ${OTP_MAX_ATTEMPTS-otpAttempts} attempt${OTP_MAX_ATTEMPTS-otpAttempts===1?'':'s'} remaining.`;
+        document.getElementById('otp-error').textContent=`Incorrect code. ${OTP_MAX_ATTEMPTS-otpAttempts} attempt${OTP_MAX_ATTEMPTS-otpAttempts===1?'':'s'} remaining.`;
       }
       document.getElementById('otp-error').classList.remove('hidden');
       clearOTPBoxes();
@@ -335,8 +335,8 @@ document.addEventListener('DOMContentLoaded',()=>{
     otpExpiry=Date.now()+(OTP_EXPIRY_SEC*1000);
     emailjs.send(EMAILJS_SERVICE_ID,EMAILJS_TEMPLATE_ID,{to_name:currentUser.name,to_email:currentUser.email,otp_code:otpCode,quiz_name:'IGI Colored Stone Quiz',expiry_min:'5'}).then(()=>{
       startOTPCountdown();
-      showToast('✉️','New code sent to your email!');
-    }).catch(()=>showToast('⚠️','Failed to resend. Please try again.'));
+      showToast('','New code sent to your email!');
+    }).catch(()=>showToast('','Failed to resend. Please try again.'));
   });
   document.getElementById('verify-otp-btn')?.addEventListener('click',verifyOTP);
 });
@@ -416,10 +416,10 @@ function showResult(score,timeStr,pct,wrongAnswers){
   let cur=0;document.getElementById('res-score').textContent=`0 / ${finalTotal}`;
   const iv=setInterval(()=>{cur=Math.min(cur+1,score);document.getElementById('res-score').textContent=`${cur} / ${finalTotal}`;if(cur>=score)clearInterval(iv);},55);
   let badge,badgeColor;
-  if(pct>=92){badge='🏆 Colored Stone Expert';badgeColor='#c9a84c';}
-  else if(pct>=76){badge='💎 Stone Connoisseur';badgeColor='#27ae60';}
-  else if(pct>=60){badge='🌿 On Your Way';badgeColor='#2980b9';}
-  else{badge='📚 Keep Exploring';badgeColor='#8e44ad';}
+  if(pct>=92){badge='Colored Stone Expert';badgeColor='#c9a84c';}
+  else if(pct>=76){badge='Stone Connoisseur';badgeColor='#27ae60';}
+  else if(pct>=60){badge='On Your Way';badgeColor='#2980b9';}
+  else{badge='Keep Exploring';badgeColor='#8e44ad';}
   const be=document.getElementById('res-badge');be.textContent=badge;be.style.color=badgeColor;be.style.borderColor=badgeColor+'40';
   document.getElementById('review-list').innerHTML=shuffledQuestions.map((q,i)=>{
     const gi=userAnswers[q.id],ok=gi===q.correct,gt=gi!==undefined?q.options[gi]:'Not answered',ct=q.options[q.correct];
@@ -433,9 +433,9 @@ function showResult(score,timeStr,pct,wrongAnswers){
 // Country-specific course list — Colored Stone quiz leads with CSG, then full catalog by region
 const COURSES_BY_COUNTRY = {
   'India': [
-    {value:'Colored Stone Graduate Program (C.S.G.)',  label:'🪨 Colored Stone Graduate Program (C.S.G.)'},
-    {value:'Graduate Gemologist Program (G.G.)',       label:'🏆 Graduate Gemologist Program (G.G.)'},
-    {value:'Diamond Graduate Program (D.G.)',           label:'💎 Diamond Graduate Program (D.G.)'},
+    {value:'Colored Stone Graduate Program (C.S.G.)',  label:'Colored Stone Graduate Program (C.S.G.)'},
+    {value:'Graduate Gemologist Program (G.G.)',       label:'Graduate Gemologist Program (G.G.)'},
+    {value:'Diamond Graduate Program (D.G.)',           label:'Diamond Graduate Program (D.G.)'},
     {value:'Gem-A Foundation & Diploma (FGA pathway)', label:'🎓 Gem-A Foundation & Diploma (FGA pathway)'},
     {value:'Digital Jewelry Design – JewelPad',        label:'🖥️ Digital Jewelry Design – JewelPad'},
     {value:'Jewelry Design Graduate Program (J.D.G.)', label:'✏️ Jewelry Design Graduate Program (J.D.G.)'},
@@ -445,34 +445,34 @@ const COURSES_BY_COUNTRY = {
     {value:'Just Exploring',                           label:'🔍 Just Exploring for Now'},
   ],
   'UAE': [
-    {value:'Colored Stone Graduate Program (C.S.G.)',  label:'🪨 Colored Stone Graduate Program (C.S.G.)'},
-    {value:'Graduate Gemologist Program (G.G.)',       label:'🏆 Graduate Gemologist Program (G.G.)'},
-    {value:'Diamond Graduate Program (D.G.)',           label:'💎 Diamond Graduate Program (D.G.)'},
+    {value:'Colored Stone Graduate Program (C.S.G.)',  label:'Colored Stone Graduate Program (C.S.G.)'},
+    {value:'Graduate Gemologist Program (G.G.)',       label:'Graduate Gemologist Program (G.G.)'},
+    {value:'Diamond Graduate Program (D.G.)',           label:'Diamond Graduate Program (D.G.)'},
     {value:'Jewelry Design Graduate Program (J.D.G.)', label:'✏️ Jewelry Design Graduate Program (J.D.G.)'},
     {value:'Pearl Course',                             label:'🦪 Pearl Course'},
     {value:'Online Diamond Grading (eLearning)',       label:'💻 Online Diamond Grading (eLearning)'},
     {value:'Just Exploring',                           label:'🔍 Just Exploring for Now'},
   ],
   'Belgium': [
-    {value:'Colored Stone Graduate Program (C.S.G.)',  label:'🪨 Colored Stone Graduate Program (C.S.G.)'},
-    {value:'Graduate Gemologist Program (G.G.)',       label:'🏆 Graduate Gemologist Program (G.G.)'},
-    {value:'Diamond Graduate Program (D.G.)',           label:'💎 Diamond Graduate Program (D.G.)'},
+    {value:'Colored Stone Graduate Program (C.S.G.)',  label:'Colored Stone Graduate Program (C.S.G.)'},
+    {value:'Graduate Gemologist Program (G.G.)',       label:'Graduate Gemologist Program (G.G.)'},
+    {value:'Diamond Graduate Program (D.G.)',           label:'Diamond Graduate Program (D.G.)'},
     {value:'Diamond Grading Essentials',               label:'🔬 Diamond Grading Essentials'},
     {value:'Online Diamond Grading (eLearning)',       label:'💻 Online Diamond Grading (eLearning)'},
     {value:'Just Exploring',                           label:'🔍 Just Exploring for Now'},
   ],
   'Israel': [
-    {value:'Colored Stone Graduate Program (C.S.G.)',  label:'🪨 Colored Stone Graduate Program (C.S.G.)'},
-    {value:'Graduate Gemologist Program (G.G.)',       label:'🏆 Graduate Gemologist Program (G.G.)'},
-    {value:'Diamond Graduate Program (D.G.)',           label:'💎 Diamond Graduate Program (D.G.)'},
+    {value:'Colored Stone Graduate Program (C.S.G.)',  label:'Colored Stone Graduate Program (C.S.G.)'},
+    {value:'Graduate Gemologist Program (G.G.)',       label:'Graduate Gemologist Program (G.G.)'},
+    {value:'Diamond Graduate Program (D.G.)',           label:'Diamond Graduate Program (D.G.)'},
     {value:'Diamond Grading Essentials',               label:'🔬 Diamond Grading Essentials'},
     {value:'Online Diamond Grading (eLearning)',       label:'💻 Online Diamond Grading (eLearning)'},
     {value:'Just Exploring',                           label:'🔍 Just Exploring for Now'},
   ],
   'USA': [
-    {value:'Colored Stone Graduate Program (C.S.G.)',  label:'🪨 Colored Stone Graduate Program (C.S.G.)'},
-    {value:'Graduate Gemologist Program (G.G.)',       label:'🏆 Graduate Gemologist Program (G.G.)'},
-    {value:'Diamond Graduate Program (D.G.)',           label:'💎 Diamond Graduate Program (D.G.)'},
+    {value:'Colored Stone Graduate Program (C.S.G.)',  label:'Colored Stone Graduate Program (C.S.G.)'},
+    {value:'Graduate Gemologist Program (G.G.)',       label:'Graduate Gemologist Program (G.G.)'},
+    {value:'Diamond Graduate Program (D.G.)',           label:'Diamond Graduate Program (D.G.)'},
     {value:'Jewelry Design Graduate Program (J.D.G.)', label:'✏️ Jewelry Design Graduate Program (J.D.G.)'},
     {value:'Pearl Course',                             label:'🦪 Pearl Course'},
     {value:'Diamond Grading Essentials',               label:'🔬 Diamond Grading Essentials'},
@@ -480,9 +480,9 @@ const COURSES_BY_COUNTRY = {
     {value:'Just Exploring',                           label:'🔍 Just Exploring for Now'},
   ],
   'UK': [
-    {value:'Colored Stone Graduate Program (C.S.G.)',  label:'🪨 Colored Stone Graduate Program (C.S.G.)'},
-    {value:'Graduate Gemologist Program (G.G.)',       label:'🏆 Graduate Gemologist Program (G.G.)'},
-    {value:'Diamond Graduate Program (D.G.)',           label:'💎 Diamond Graduate Program (D.G.)'},
+    {value:'Colored Stone Graduate Program (C.S.G.)',  label:'Colored Stone Graduate Program (C.S.G.)'},
+    {value:'Graduate Gemologist Program (G.G.)',       label:'Graduate Gemologist Program (G.G.)'},
+    {value:'Diamond Graduate Program (D.G.)',           label:'Diamond Graduate Program (D.G.)'},
     {value:'Jewelry Design Graduate Program (J.D.G.)', label:'✏️ Jewelry Design Graduate Program (J.D.G.)'},
     {value:'Pearl Course',                             label:'🦪 Pearl Course'},
     {value:'Online Diamond Grading (eLearning)',       label:'💻 Online Diamond Grading (eLearning)'},
@@ -490,9 +490,9 @@ const COURSES_BY_COUNTRY = {
   ],
 };
 const COURSES_DEFAULT = [
-  {value:'Colored Stone Graduate Program (C.S.G.)',  label:'🪨 Colored Stone Graduate Program (C.S.G.)'},
-  {value:'Graduate Gemologist Program (G.G.)',       label:'🏆 Graduate Gemologist Program (G.G.)'},
-  {value:'Diamond Graduate Program (D.G.)',           label:'💎 Diamond Graduate Program (D.G.)'},
+  {value:'Colored Stone Graduate Program (C.S.G.)',  label:'Colored Stone Graduate Program (C.S.G.)'},
+  {value:'Graduate Gemologist Program (G.G.)',       label:'Graduate Gemologist Program (G.G.)'},
+  {value:'Diamond Graduate Program (D.G.)',           label:'Diamond Graduate Program (D.G.)'},
   {value:'Jewelry Design Graduate Program (J.D.G.)', label:'✏️ Jewelry Design Graduate Program (J.D.G.)'},
   {value:'Pearl Course',                             label:'🦪 Pearl Course'},
   {value:'Online Diamond Grading (eLearning)',       label:'💻 Online Diamond Grading (eLearning)'},
@@ -518,10 +518,10 @@ function bindCourseInterest(){
 }
 
 // SHARE
-function getShareText(){const pct=Math.round((finalScore/finalTotal)*100);const badge=pct>=92?'🏆 Colored Stone Expert':pct>=76?'💎 Stone Connoisseur':pct>=60?'🌿 On Your Way':'📚 Keep Exploring';return`I scored ${finalScore}/${finalTotal} (${pct}%) on the IGI Colored Stone Quiz and earned: ${badge}! 💎\n\nCan you beat my score? Take the quiz: ${QUIZ_URL}`;}
+function getShareText(){const pct=Math.round((finalScore/finalTotal)*100);const badge=pct>=92?'Colored Stone Expert':pct>=76?'Stone Connoisseur':pct>=60?'On Your Way':'Keep Exploring';return`I scored ${finalScore}/${finalTotal} (${pct}%) on the IGI Colored Stone Quiz and earned: ${badge}! \n\nCan you beat my score? Take the quiz: ${QUIZ_URL}`;}
 function shareWhatsApp(){window.open(`https://wa.me/?text=${encodeURIComponent(getShareText())}`,'_blank');}
-function shareLinkedIn(){const url=encodeURIComponent(QUIZ_URL);const pct=Math.round((finalScore/finalTotal)*100);const text=encodeURIComponent(`I scored ${finalScore}/${finalTotal} (${pct}%) on the IGI Colored Stone Quiz! 💎 Test your gem knowledge:`);window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}&summary=${text}`,'_blank');}
-function copyShareLink(){navigator.clipboard.writeText(getShareText()).then(()=>{const btn=document.getElementById('copy-btn');btn.textContent='✅ Copied!';setTimeout(()=>{btn.textContent='🔗 Copy Results';},2500);}).catch(()=>alert('Copy this link: '+QUIZ_URL));}
+function shareLinkedIn(){const url=encodeURIComponent(QUIZ_URL);const pct=Math.round((finalScore/finalTotal)*100);const text=encodeURIComponent(`I scored ${finalScore}/${finalTotal} (${pct}%) on the IGI Colored Stone Quiz! Test your gem knowledge:`);window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}&summary=${text}`,'_blank');}
+function copyShareLink(){navigator.clipboard.writeText(getShareText()).then(()=>{const btn=document.getElementById('copy-btn');btn.textContent='Copied!';setTimeout(()=>{btn.textContent='🔗 Copy Results';},2500);}).catch(()=>alert('Copy this link: '+QUIZ_URL));}
 
 // RETAKE
 function retakeQuiz(){userAnswers={};quizSubmitted=false;currentQIndex=0;finalScore=0;setGemColor('teal');document.getElementById('result-section').classList.add('hidden');document.getElementById('landing-section').classList.remove('hidden');document.getElementById('timer').classList.remove('warning');document.getElementById('timer').textContent='06:00';window.scrollTo({top:0,behavior:'smooth'});}

@@ -88,7 +88,7 @@ function formatDur(s){return`${Math.floor(s/60)}m ${s%60}s`;}
 function setGemColor(k){const g=GEM_COLORS[k]||GEM_COLORS.teal;document.documentElement.style.setProperty('--gem-color',g.color);document.documentElement.style.setProperty('--gem-glow',g.glow);document.documentElement.style.setProperty('--gem-subtle',g.subtle);}
 
 // TOAST
-const MILESTONES={5:{e:'',t:'5 down, 20 to go!'},10:{e:'',t:"10 done — you're on a roll!"},15:{e:'',t:'Halfway! Keep going!'},20:{e:'',t:'Only 5 left — finish strong!'},25:{e:'🎉',t:'All 25 answered!'}};
+const MILESTONES={5:{e:'',t:'5 down, 20 to go!'},10:{e:'',t:"10 done — you're on a roll!"},15:{e:'',t:'Halfway! Keep going!'},20:{e:'',t:'Only 5 left — finish strong!'},25:{e:'',t:'All 25 answered!'}};
 function showToast(emoji,text){const t=document.getElementById('toast');document.getElementById('toast-emoji').textContent=emoji;document.getElementById('toast-text').textContent=text;t.classList.add('visible');setTimeout(()=>t.classList.remove('visible'),3200);}
 
 // COUNTRY/CITY
@@ -521,7 +521,7 @@ function bindCourseInterest(){
 function getShareText(){const pct=Math.round((finalScore/finalTotal)*100);const badge=pct>=92?'Colored Stone Expert':pct>=76?'Stone Connoisseur':pct>=60?'On Your Way':'Keep Exploring';return`I scored ${finalScore}/${finalTotal} (${pct}%) on the IGI Colored Stone Quiz and earned: ${badge}! \n\nCan you beat my score? Take the quiz: ${QUIZ_URL}`;}
 function shareWhatsApp(){window.open(`https://wa.me/?text=${encodeURIComponent(getShareText())}`,'_blank');}
 function shareLinkedIn(){const url=encodeURIComponent(QUIZ_URL);const pct=Math.round((finalScore/finalTotal)*100);const text=encodeURIComponent(`I scored ${finalScore}/${finalTotal} (${pct}%) on the IGI Colored Stone Quiz! Test your gem knowledge:`);window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}&summary=${text}`,'_blank');}
-function copyShareLink(){navigator.clipboard.writeText(getShareText()).then(()=>{const btn=document.getElementById('copy-btn');btn.textContent='Copied!';setTimeout(()=>{btn.textContent='🔗 Copy Results';},2500);}).catch(()=>alert('Copy this link: '+QUIZ_URL));}
+function copyShareLink(){navigator.clipboard.writeText(getShareText()).then(()=>{const btn=document.getElementById('copy-btn');btn.textContent='Copied!';setTimeout(()=>{btn.textContent=' Copy Results';},2500);}).catch(()=>alert('Copy this link: '+QUIZ_URL));}
 
 // RETAKE
 function retakeQuiz(){userAnswers={};quizSubmitted=false;currentQIndex=0;finalScore=0;setGemColor('teal');document.getElementById('result-section').classList.add('hidden');document.getElementById('landing-section').classList.remove('hidden');document.getElementById('timer').classList.remove('warning');document.getElementById('timer').textContent='06:00';window.scrollTo({top:0,behavior:'smooth'});}
